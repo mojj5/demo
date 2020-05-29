@@ -1,0 +1,39 @@
+﻿body {
+background:#e4ce83 url("//image.sojump.com/images/newbg/Nview.jpg") no-repeat fixed top center;
+}
+#jqContent{
+margin:68px auto 0px !important;
+padding-top:0px;
+}
+#headerCss {
+background: white no-repeat;
+width: 920px;
+margin: 0 auto;
+}
+#mainCss {
+background: white;
+width: 920px;
+margin: 0 auto;
+}
+#footercss {
+width: 920px;
+margin: 0 auto;
+background: white;
+height: 20px;
+}
+.surveyhead h1 {
+font-size: 20px;
+font-weight: bold;
+color: #39a4db;
+}
+
+input.submitbutton {
+border: 1px solid #2694cd;
+background: #39a4db;
+}
+input.submitbutton_hover
+{
+    background:#47ade1;
+color:#fff !important;
+boder:1px soild #39a4db;
+}
