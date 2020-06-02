@@ -92,8 +92,10 @@
                                             </div>
                                         </div><!-- /widget-main -->
                                         <div>
-                                            <p th:text="${error}"></p>
+                                            <p  style="text-align: center;color: #800000"  th:text="${error}"></p>
                                         </div>
+
+
                                         <div class="toolbar clearfix">
                                             <div>
                                                 <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
@@ -243,6 +245,22 @@
              jQuery('.widget-box.visible').removeClass('visible');
              jQuery('#'+id).addClass('visible');
             }
+
+
+            $(function(){
+                login.initPage();
+            });
+
+            var login = {
+                //初始化页面跳转，为了防止从iframe跳转到login页面直接在iframe中显示login页面
+                initPage: function () {
+                    //alert(location.href);
+                    if (window.top != window.self) {
+                        top.location.href = location.href;
+                    }
+                },
+            }
+
         </script>
     
 </body>

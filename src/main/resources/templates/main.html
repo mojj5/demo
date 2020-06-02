@@ -7,6 +7,13 @@
 
     <th:block th:include="common::links"></th:block>
 
+    <style>
+        .delect:hover {
+
+            color: #00CC00;
+            font-size: larger;
+        }
+    </style>
 
 </head>
 <body>
@@ -22,24 +29,25 @@
         <ul class="breadcrumb">
             <li>
                 <i class="icon-home home-icon"></i>
-                <a href="#">Home</a>
+                <a  th:href="@{/mian}">首页</a>
             </li>
 
-            <li class="active">main</li>
+
         </ul><!-- .breadcrumb -->
 
         <div class="page-content">
             <div class="page-header">
-                <h1>
-                    Treeview
-                    <small>
-                        <i class="icon-double-angle-right"></i>
-                        with selectable items(single &amp; multiple) and custom icons
-                    </small>
-                </h1>
+                <div id="tas"  style="background-color: #DFF0D8;width: 70%;height: 80px;margin-left: 50px;font-size: 18px;text-indent: 20px;line-height: 80px;position: relative">
+                   <span style="color:#008000"> 欢迎使用</span><span style="color: #004000;font-weight:600">后台管理系统</span> <span  class="delect" onclick=" (function f()
+                   {
+                       document.getElementById('tas').style.display='none';
+
+                   })()" style="position: absolute;right: 15px;">x</span>
+                </div>
             </div><!-- /.page-header -->
 
-            <div class="row">
+            <div class="row" style="margin-left: 5px">
+                <div style="font-size: 20px;font-weight: bolder">各个渠道版本号：</div>
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
                     <h2 th:text="${test}"></h2>

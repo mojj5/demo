@@ -20,6 +20,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.FilterInvocation;
@@ -43,6 +45,10 @@ public class Serurity extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
 
     @Autowired
     private LoginSuccessHandel loginSuccessHandel;
@@ -93,6 +99,10 @@ public class Serurity extends WebSecurityConfigurerAdapter {
         //  鉴权失败处理页
         http.exceptionHandling().accessDeniedPage("/error-404");
 
+        // 记住我
+        http.rememberMe().rememberMeCookieName("remeber_me").tokenValiditySeconds(60*60*24*7);
+
+        http.sessionManagement().maximumSessions(2).expiredUrl("/loginPage").sessionRegistry(sessionRegistry());
     }
 
 

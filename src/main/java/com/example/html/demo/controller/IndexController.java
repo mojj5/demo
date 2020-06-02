@@ -22,10 +22,9 @@ public class IndexController {
     }
 
 
-    @PreAuthorize("hasAuthority('p4')")
+    @PreAuthorize("hasAuthority('p1')")
     @RequestMapping("/main")
     public String main(ModelMap model) {
-
         model.addAttribute("test", "hello word !!!");
         return "/main";
     }
@@ -43,6 +42,7 @@ public class IndexController {
         modelMap.addAttribute("error",error);
         return "/login";
     }
+
 
 
 }

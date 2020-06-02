@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <th:block th:include="common::links"></th:block>
+
+
+    <style>
+        th, td, tr {
+            border: 1px solid #000000;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+
+    <ul class="breadcrumb">
+        <ul class="breadcrumb">
+            <li><i class="icon-home home-icon"></i> <a th:href="@{/main}">首页</a></li>
+            <li><a href="javascript:void(0);">系统管理</a></li>
+            <li class="active">会话管理</li>
+        </ul>
+    </ul><!-- .breadcrumb -->
+
+    <div class="page-content">
+        <div style="width: 95%;margin:0 auto">
+            <div style="color: #0080ff">
+                <spqn> 当前在线人数:[[${num}]]</spqn>
+                <span><a href="">刷新</a></span>
+            </div>
+
+            <table>
+                <thead>
+
+                <td>
+                    会话ID
+                </td>
+                <td> 用户名</td>
+                <td>主机地址</td>
+                <td>登录时间</td>
+                <td>最后访问时间</td>
+                <td> 超时时间(s)</td>
+                <td> 已强制退出</td>
+                <td> 操作</td>
+
+                </thead>
+
+                <tbody>
+                <tr th:each="se:${sessionList}">
+                    <td th:text="${se.sessionId}"></td>
+                    <td th:text="${se.username}"></td>
+                    <td th:text="${se.ip}"></td>
+                    <td th:text="${#dates.format(se.loginTime,'yyyy-MM-dd HH:mm:ss') }"></td>
+                    <td th:text="${#dates.format(se.lastLoginTime,'yyyy-MM-dd HH:mm:ss') }"></td>
+                    <td th:text="${se.timeOutSecond}"></td>
+                    <td th:text="${se.status==0?'否':'是'}"></td>
+                    <td ><a th:href="@{'/sys/session/'+${se.sessionId}+'/forceLogout'}">操作</a></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+            <div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<th:block th:include="common::scripts"></th:block>
+</body>
+</html>
