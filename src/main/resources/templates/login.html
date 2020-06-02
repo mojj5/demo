@@ -39,7 +39,7 @@
 
                                             <div class="space-6"></div>
 
-                                            <form method="post" th:action="@{/login}">
+                                            <form method="post" th:action="@{/loginUrl}">
                                                 <fieldset>
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
@@ -91,7 +91,9 @@
                                                 </a>
                                             </div>
                                         </div><!-- /widget-main -->
-
+                                        <div>
+                                            <p th:text="${error}"></p>
+                                        </div>
                                         <div class="toolbar clearfix">
                                             <div>
                                                 <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
