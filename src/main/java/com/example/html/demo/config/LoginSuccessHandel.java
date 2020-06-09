@@ -15,13 +15,6 @@ public class LoginSuccessHandel extends SavedRequestAwareAuthenticationSuccessHa
 
     /**
      * 登陆成功后的回调
-     * test
-     * addbug
-     * test
-     * test
-     * test
-     * tests
-     * test
      * @param request
      * @param response
      * @param authentication
