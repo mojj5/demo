@@ -1,6 +1,11 @@
 package com.example.html.demo.controller;
 
+import com.example.html.demo.mq.pr.RabbitProducer;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,16 +15,37 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
 public class IndexController {
 
 
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+
+    @Autowired
+    RabbitProducer rabbitProducer;
+
     @RequestMapping("/")
-    public String index() {
+    public String index(HttpSession session) {
+
+        // 记录访问首页次数
+        stringRedisTemplate.opsForValue().increment("index_count");
+
+        // 用户登录后通知其它业务
+        rabbitProducer.stringSend();
+
+
+
         return "/index";
     }
+
+
+
 
 
     @PreAuthorize("hasAuthority('p1')")
